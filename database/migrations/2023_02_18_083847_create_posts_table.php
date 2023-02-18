@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('excerpt');
             $table->text('body');
             $table->timestamp('published_at')->nullable();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

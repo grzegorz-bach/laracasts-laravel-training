@@ -23,5 +23,5 @@ Route::get('/posts', function () {
 });
 
 Route::get('/posts/{post:slug}', function (Post $post) {
-    return view('single-post', ['post' => $post]);
+    return view('single-post', ['post' => $post->with('author')->first()]);
 });
