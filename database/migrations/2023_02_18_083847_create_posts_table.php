@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
+            $table->string('featured_image');
             $table->timestamp('published_at')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', function () {
-    return view('posts', ['posts' => Post::all()]);
+    return view('posts', ['posts' => Post::with(['author'])->latest()->get()]);
 });
 
 Route::get('/posts/{post:slug}', function (Post $post) {
