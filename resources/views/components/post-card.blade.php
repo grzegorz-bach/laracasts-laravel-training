@@ -32,7 +32,9 @@
                     <img src="./images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
                         <h5 class="font-bold">{{ $post->author->name }}</h5>
-                        <h6>Mascot at Laracasts</h6>
+                        @if (!empty($post->author->title))
+                            <h6>{{ $post->author->title}}</h6>
+                        @endif
                     </div>
                 </div>
 
