@@ -23,7 +23,9 @@ class PostFactory extends Factory
             'slug' => fake()->unique()->slug(),
             'excerpt' => fake()->paragraph(1),
             'body' => fake()->paragraph(5),
-            'featured_image' => "/images/illustration-$image_number.png"
+            'featured_image' => "/images/illustration-$image_number.png",
+            'category_id' => \App\Models\Category::all()->random()->id,
+            'user_id' => \App\Models\User::all()->random()->id
         ];
     }
 }
