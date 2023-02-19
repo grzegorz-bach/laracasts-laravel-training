@@ -21,8 +21,8 @@ class PostFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'slug' => fake()->unique()->slug(),
-            'excerpt' => fake()->paragraph(1),
-            'body' => fake()->paragraph(5),
+            'excerpt' => '<p>'.implode('</p><p>', fake()->paragraphs(2)).'</p>',
+            'body' => '<p>'.implode('</p><p>', fake()->paragraphs(6)).'</p>',
             'featured_image' => "/images/illustration-$image_number.png",
             'category_id' => \App\Models\Category::all()->random()->id,
             'user_id' => \App\Models\User::all()->random()->id
