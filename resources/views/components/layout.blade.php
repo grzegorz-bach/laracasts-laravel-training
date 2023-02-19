@@ -48,4 +48,5 @@
             </div>
         </footer>
     </section>
+    @vite(['resources/js/app.js'])
 </body>

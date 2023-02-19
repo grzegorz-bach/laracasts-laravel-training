@@ -1,3 +1,5 @@
+@props(['categories', 'category', 'authors', 'author'])
+
 <header class="max-w-xl mx-auto mt-20 text-center">
     <h1 class="text-4xl">
         Latest <span class="text-blue-500">Laravel From Scratch</span> News
@@ -13,11 +15,16 @@
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
         <!--  Category -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
-            <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
-                <option value="category" disabled selected>Category
-                </option>
-                <option value="personal">Personal</option>
-                <option value="business">Business</option>
+            <select id="category-select" class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
+                <option value="" {{ !empty($category) ? 'selected' : '' }}>Category</option>
+                @foreach ($categories as $category_option)
+                    <option
+                        value="{{ $category_option->slug }}"
+                        {{ !empty($category) && $category_option->id === $category->id ? 'selected' : ''}}
+                    >
+                        {{ ucfirst($category_option->name) }}
+                    </option>
+                @endforeach
             </select>
 
             <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px;" width="22" height="22" viewBox="0 0 22 22">
@@ -31,13 +38,16 @@
 
         <!-- Other Filters -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
-            <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
-                <option value="category" disabled selected>Other Filters
-                </option>
-                <option value="foo">Foo
-                </option>
-                <option value="bar">Bar
-                </option>
+            <select id="author-select" class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
+                <option value="" {{ !empty($author) ? 'selected' : '' }}>Author</option>
+                @foreach ($authors as $author_option)
+                    <option
+                        value="{{ $author_option->id }}"
+                        {{ !empty($author) && $author_option->id === $author->id ? 'selected' : ''}}
+                    >
+                        {{ ucfirst($author_option->name) }}
+                    </option>
+                @endforeach
             </select>
 
             <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px;" width="22" height="22" viewBox="0 0 22 22">
