@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -20,19 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts', function () {
-    return view('posts', [
-        'posts' => Post::with(['author', 'category'])->latest()->get(),
-        'categories' => Category::all(),
-        'authors' => User::all(),
-        'category' => null,
-        'author' => null
-    ]);
-});
+Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/posts/{post:slug}', function (Post $post) {
-    return view('single-post', ['post' => $post->with(['author', 'category'])->first()]);
-});
+Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('posts', [
