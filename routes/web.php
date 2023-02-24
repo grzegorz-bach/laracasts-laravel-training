@@ -25,22 +25,3 @@ Route::get('/posts', [PostController::class, 'index']);
 
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'posts' => $category->posts,
-        'categories' => Category::all(),
-        'authors' => User::all(),
-        'category' => $category,
-        'author' => null
-    ]);
-});
-
-Route::get('/authors/{author:id}', function (User $author) {
-    return view('posts', [
-        'posts' => $author->posts,
-        'categories' => Category::all(),
-        'authors' => User::all(),
-        'category' => null,
-        'author' => $author,
-    ]);
-});
