@@ -1,6 +1,6 @@
     <x-layout>
 
-        <x-header />
+       @include('posts._header')
 
         @if ($posts->count() > 0)
             <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
