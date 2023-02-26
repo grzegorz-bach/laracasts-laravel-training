@@ -1,11 +1,6 @@
     <x-layout>
 
-        <x-header
-            :categories="$categories"
-            :category="$category"
-            :authors="$authors"
-            :author="$author"
-        />
+        <x-header />
 
         @if ($posts->count() > 0)
             <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
