@@ -7,12 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const value = e.target.value;
             const params = new URLSearchParams(window.location.search);
 
-            if(params.has('category')){
-                params.delete('category');
+            if (params.has("category")) {
+                params.delete("category");
             }
 
-            if(params.has('page')){
-                params.delete('page');
+            if (params.has("page")) {
+                params.delete("page");
             }
 
             if (!value) {
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            params.append('category', value);
+            params.append("category", value);
             window.location.search = params.toString();
         });
 
@@ -30,12 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const value = e.target.value;
             const params = new URLSearchParams(window.location.search);
 
-            if(params.has('author')){
-                params.delete('author');
+            if (params.has("author")) {
+                params.delete("author");
             }
 
-            if(params.has('page')){
-                params.delete('page');
+            if (params.has("page")) {
+                params.delete("page");
             }
 
             if (!value) {
@@ -43,7 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            params.append('author', value);
+            params.append("author", value);
             window.location.search = params.toString();
         });
+
+    const toastSuccess = document.getElementById("toast-success");
+    if (toastSuccess) {
+        setTimeout(() => {
+            toastSuccess.style = "display: none;";
+        }, 5000);
+    }
 });

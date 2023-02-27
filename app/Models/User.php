@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
+        'title',
         'email',
         'password',
     ];
@@ -41,6 +43,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($pasword) // MUTATOR: set{{ attribute name }}Attribute
+    {
+        $this->attributes['password'] = bcrypt($pasword);
+    }
 
     public function posts()
     {

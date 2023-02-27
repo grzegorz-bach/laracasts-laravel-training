@@ -48,5 +48,6 @@
             </div>
         </footer>
     </section>
+    <x-toast-success />
     @vite(['resources/js/app.js'])
 </body>
