@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 params.delete('category');
             }
 
+            if(params.has('page')){
+                params.delete('page');
+            }
+
             if (!value) {
                 window.location.search = params.toString();
                 return;
@@ -28,6 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if(params.has('author')){
                 params.delete('author');
+            }
+
+            if(params.has('page')){
+                params.delete('page');
             }
 
             if (!value) {

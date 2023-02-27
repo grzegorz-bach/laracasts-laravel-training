@@ -13,9 +13,11 @@
                 </div>
 
                 <div class="mt-4">
-                    <h1 class="text-3xl">
+                    <a href="/posts/{{ $post->slug }}">
+                      <h1 class="text-3xl">
                         {{ $post->title }}
-                    </h1>
+                      </h1>
+                    </a>
 
                     <span class="mt-2 block text-gray-400 text-xs">
                         Published <time>{{ $post->created_at->diffForHumans() }}</time>
@@ -36,12 +38,6 @@
                             <h6>{{ $post->author->title}}</h6>
                         @endif
                     </div>
-                </div>
-
-                <div>
-                    <a href="/posts/{{ $post->slug }}" class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8">
-                        Read More
-                    </a>
                 </div>
             </footer>
         </div>

@@ -12,6 +12,8 @@
                     @endforeach
                 </div>
             </main>
+
+            {{ $posts->links() }}
         @else
             <p class="my-32 text-center"> Sorry, couldn't find any posts here :( </p>
         @endif
