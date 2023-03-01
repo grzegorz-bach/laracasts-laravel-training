@@ -17,7 +17,5 @@ class DatabaseSeeder extends Seeder
         \App\Models\Category::factory(5)->create();
 
         \App\Models\Post::factory(30)->create();
-
-        \App\Models\Comment::factory(80)->create();
     }
 }
