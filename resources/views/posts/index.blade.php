@@ -1,6 +1,6 @@
     <x-layout>
 
-       @include('posts._header')
+        @include('posts._header')
 
         @if ($posts->count() > 0)
             <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
@@ -8,7 +8,7 @@
 
                 <div class="lg:grid lg:grid-cols-6">
                     @foreach ($posts->skip(1) as $post)
-                        <x-post-card :post="$post"  style="grid-column: span {{ $loop->iteration > 2 ? 2 : 3}}" />
+                        <x-post-card :post="$post" style="grid-column: span {{ $loop->iteration > 2 ? 2 : 3 }}" />
                     @endforeach
                 </div>
             </main>
