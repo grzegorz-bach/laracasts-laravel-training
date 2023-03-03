@@ -26,6 +26,10 @@ class PostController extends Controller
         ]);
     }
 
+    public function create(){
+        return view('posts.create');
+    }
+
     public function getPosts()
     {
         $posts = Post::with(['author', 'category'])->latest();

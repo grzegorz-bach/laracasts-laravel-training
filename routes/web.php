@@ -5,6 +5,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Http\Middleware\AdminsOnly;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -37,3 +38,7 @@ Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
 Route::post('/newsletter', NewsletterController::class);
+
+Route::middleware('admin')->group(function () {
+    Route::get('/admin/posts/create', [PostController::class, 'create']);
+});
