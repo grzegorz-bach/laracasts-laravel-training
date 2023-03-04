@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -20,6 +21,7 @@ class Post extends Model
         'excerpt',
         'body',
         'user_id',
+        'category_id',
         'featured_image'
     ];
 
@@ -36,6 +38,22 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function setTitleAttribute(string $title)
+    {
+        $this->attributes['title'] = $title;
+
+        $i = 0;
+
+        do {
+            $suffix = "";
+            if ($i > 0) {
+                $suffix = " {$i}";
+            }
+            $this->attributes['slug'] = Str::slug($title . $suffix);
+            $i++;
+        } while (Post::where('slug', $this->attributes['slug'])->exists());
     }
 
     public function scopeFilter($query, array $filters)
