@@ -23,7 +23,7 @@ class PostFactory extends Factory
             'slug' => fake()->unique()->slug(),
             'excerpt' => '<p>' . implode('</p><p>', fake()->paragraphs(2)) . '</p>',
             'body' => '<p>' . implode('</p><p>', fake()->paragraphs(6)) . '</p>',
-            'featured_image' => "/images/illustration-$image_number.png",
+            'featured_image' => "/default_images/illustration-$image_number.png",
             'category_id' => fn () => \App\Models\Category::all()->random()->id,
             'user_id' => fn () => \App\Models\User::all()->random()->id
         ];

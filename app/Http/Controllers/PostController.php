@@ -23,7 +23,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', [
-            'post' => $post->with(['author', 'category'])->first()
+            'post' => $post
         ]);
     }
 
@@ -40,10 +40,12 @@ class PostController extends Controller
             'title' => 'required',
             'excerpt' => 'required',
             'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+            'featured_image' => ['required', 'image']
         ]);
 
         $attributes['user_id'] = auth()->user()->id;
+        $attributes['featured_image'] = request()->file('featured_image')->store('featured_images');
 
         Post::create($attributes);
 

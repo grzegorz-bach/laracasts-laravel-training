@@ -1,6 +1,7 @@
 <x-layout>
     <x-panel class="max-w-sm mx-auto">
-        <form action="/admin/posts" method="POST">
+        <h1 class="text-lg font-bold mb-8 text-blue-500 text-center uppercase">Publish new post</h1>
+        <form action="/admin/posts" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-6">
@@ -33,6 +34,15 @@
                 <textarea name="body" id="body" required class="border border-gray-400 p-2 w-full">{{ old('body') }}</textarea>
 
                 @error('body')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
+                <label for="featured_image" class="block mb-2 uppercase font-bold text-sx text-gray-700">Featured image</label>
+                <input type="file" name="featured_image" id="featured_image" required />
+
+                @error('featured_image')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
