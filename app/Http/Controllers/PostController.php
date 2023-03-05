@@ -27,13 +27,6 @@ class PostController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return view('posts.create', [
-            'categories' => Category::all()
-        ]);
-    }
-
     public function store()
     {
         $attributes = request()->validate([
