@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class AdminPostController extends Controller
 {
@@ -65,6 +66,36 @@ class AdminPostController extends Controller
         return redirect()
             ->route('admin-dashboard')
             ->with('success', "Post '{$attributes['title']}' sucessfully updated.");
+    }
+
+    public function publish(Post $post)
+    {
+        if (isset($post->published_at)) {
+            throw ValidationException::withMessages(['published_at' => 'Post already published']);
+        }
+
+        $post->update([
+            'published_at' => now()
+        ]);
+
+        return redirect()
+            ->route('admin-dashboard')
+            ->with('success', "Post '{$post->title}' has been published successfully.");
+    }
+
+    public function unpublish(Post $post)
+    {
+        if (!isset($post->published_at)) {
+            throw ValidationException::withMessages(['published_at' => 'Post is not published']);
+        }
+
+        $post->update([
+            'published_at' => null
+        ]);
+
+        return redirect()
+            ->route('admin-dashboard')
+            ->with('success', "Post '{$post->title}' has been unpublished successfully.");
     }
 
     public function destroy(Post $post)

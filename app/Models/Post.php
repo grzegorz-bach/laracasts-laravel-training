@@ -22,7 +22,18 @@ class Post extends Model
         'body',
         'user_id',
         'category_id',
-        'featured_image'
+        'featured_image',
+        'published_at'
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'published_at'
+    ];
+
+    protected $casts = [
+        'published_at' => 'datetime'
     ];
 
     public function author()

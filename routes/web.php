@@ -46,6 +46,8 @@ Route::middleware('admin')->group(function () {
     Route::post('/admin/posts', [AdminPostController::class, 'store']);
     Route::get('/admin/posts/{post:slug}/edit', [AdminPostController::class, 'edit']);
     Route::patch('/admin/posts/{post}', [AdminPostController::class, 'update']);
+    Route::patch('/admin/posts/{post}/publish', [AdminPostController::class, 'publish']);
+    Route::patch('/admin/posts/{post}/unpublish', [AdminPostController::class, 'unpublish']);
     Route::delete('/admin/posts/{post}', [AdminPostController::class, 'destroy']);
 
     // Route::resource('/admin/posts', AdminPostController::class)->except('show');
