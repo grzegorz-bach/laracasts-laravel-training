@@ -17,6 +17,7 @@
                                         class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Created</th>
                                     <th scope="col" class="relative px-6 py-3"><span class="sr-only">Edit</span></th>
+                                    <th scope="col" class="relative px-6 py-3"><span class="sr-only">Delete</span></th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -48,8 +49,16 @@
                                             {{ $post->created_at }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="/admin/posts/{{ $post->slug }}"
+                                            <a href="/admin/posts/{{ $post->slug }}/edit"
                                                 class="text-blue-500 hover:text-blue-600">Edit</a>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <form method="POST" action="/admin/posts/{{ $post->id }}">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="text-sm text-red-500">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

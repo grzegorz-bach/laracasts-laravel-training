@@ -27,24 +27,6 @@ class PostController extends Controller
         ]);
     }
 
-    public function store()
-    {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')],
-            'featured_image' => ['required', 'image']
-        ]);
-
-        $attributes['user_id'] = auth()->user()->id;
-        $attributes['featured_image'] = request()->file('featured_image')->store('featured_images');
-
-        Post::create($attributes);
-
-        return back()->with('success', "Post '{$attributes['title']}' sucessfully created.");
-    }
-
     public function getPosts()
     {
         $posts = Post::with(['author', 'category'])->latest();

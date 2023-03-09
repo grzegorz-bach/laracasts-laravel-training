@@ -22,7 +22,11 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                    <span>Welcome, {{ auth()->user()->name }} !</span>
+                    @if(auth()->user()->can('admin'))
+                        <a href="/admin/posts" class="hover:underline">Welcome, {{ auth()->user()->name }} !</a>
+                    @else
+                        <span>Welcome, {{ auth()->user()->name }} !</span>
+                    @endif
                     <form method="POST" action="/logout" class="text-xs text-blue-500 ml-3">
                         @csrf
                         <button type="submit">Log Out</button>
